@@ -1,5 +1,5 @@
 task("assemble")
-apply(from = rootProject.file("git-hooks.gradle"))
+apply{from(rootProject.file("git-hooks.gradle"))}
 buildscript{
     repositories {
         google()
