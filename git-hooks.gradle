@@ -17,17 +17,16 @@ task installGitHooks(type: Exec) {
     description 'Installs the pre-commit git hooks from harbour/git-hooks.'
     group 'git hooks'
     workingDir rootDir
-            commandLine 'chmod'
+    commandLine 'chmod'
     args '-R', '+x', '.git/hooks/'
     dependsOn copyGitHooks
-            onlyIf { isLinuxOrMacOs() }
+    onlyIf { isLinuxOrMacOs() }
     doLast {
         logger.info('Git hook installed successfully.')
     }
 }
 
 afterEvaluate {
-    // We install the hook at the first occasion
     tasks['clean'].dependsOn installGitHooks
-            tasks['assemble'].dependsOn installGitHooks
+    tasks['assemble'].dependsOn installGitHooks
 }
