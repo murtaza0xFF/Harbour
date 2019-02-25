@@ -8,7 +8,7 @@ android {
     compileSdkVersion(28)
     defaultConfig {
         applicationId = "com.murtaza0xff.harbour"
-        minSdkVersion(15)
+        minSdkVersion(16)
         targetSdkVersion(28)
         versionCode = 1
         versionName = "1.0"

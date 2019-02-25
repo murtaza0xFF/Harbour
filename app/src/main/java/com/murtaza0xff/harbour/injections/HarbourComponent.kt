@@ -10,7 +10,7 @@ interface HarbourComponent {
     fun inject(harbour: Harbour)
 
     @Component.Builder
-    interface Builder{
+    interface Builder {
 
         fun build(): Harbour
         @BindsInstance
