@@ -10,9 +10,9 @@ class Harbour : Application() {
     }
     override fun onCreate() {
         super.onCreate()
-        harbourComponent = DaggerHarbourComponent()
-            .builder()
-            .application(this)
-            .build()
+//        harbourComponent = DaggerHarbourComponent()
+//
+//            .application(this)
+//            .build()
     }
 }

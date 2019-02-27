@@ -12,7 +12,7 @@ interface HarbourComponent {
     @Component.Builder
     interface Builder {
 
-        fun build(): Harbour
+        fun build(): HarbourComponent
         @BindsInstance
         fun application(application: Application): Builder
     }

@@ -1,6 +1,8 @@
 task("assemble")
 apply{from(rootProject.file("git-hooks.gradle"))}
 buildscript{
+    var kotlin_version: String by extra
+    kotlin_version = "1.3.21"
     repositories {
         google()
         jcenter()
