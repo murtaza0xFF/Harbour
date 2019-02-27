@@ -51,6 +51,7 @@ dependencies {
     kapt(Deps.Android.Androidx.Lifecycle.apt)
     implementation(Deps.Android.Androidx.Room.runtime)
     implementation(Deps.Android.Androidx.Room.rxJava2)
+    implementation(Deps.Misc.autoDispose)
     kapt(Deps.Android.Androidx.Room.apt)
 
     implementation(Deps.Android.Androidx.appCompat)

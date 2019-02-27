@@ -1,4 +1,4 @@
-package com.murtaza0xff.harbourhnstory
+package com.murtaza0xff.story
 
 import org.junit.Test
 

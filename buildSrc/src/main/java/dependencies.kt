@@ -11,6 +11,7 @@ object Versions {
     const val mockk = "1.9.1.kotlin12"
     const val moshi = "1.8.0"
     const val klint = "7.1.0"
+    const val autoDispose = "1.1.0"
 }
 
 object Deps {
@@ -109,7 +110,8 @@ object Deps {
             const val telescope = "com.mattprecious.telescope:telescope:2.1.0"
         }
 
-        const val klint =  "org.jlleitschuh.gradle:ktlint-gradle:${Versions.klint}"
+        const val autoDispose= "com.uber.autodispose:autodispose:${Versions.autoDispose}"
+        const val klint = "org.jlleitschuh.gradle:ktlint-gradle:${Versions.klint}"
         const val gestureViews = "com.alexvasilkov:gesture-views:2.2.0"
         const val lottie = "com.airbnb.android:lottie:2.8.0"
         const val okio = "com.squareup.okio:okio:2.1.0"
