@@ -29,7 +29,6 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(Deps.kotlin_stdlib)
-
     implementation(Deps.Dagger.runtime)
     kapt(Deps.Dagger.compiler)
 
@@ -55,7 +54,6 @@ dependencies {
     kapt(Deps.Android.Androidx.Room.apt)
 
     implementation(Deps.Android.Androidx.appCompat)
-    implementation("com.android.support.constraint:constraint-layout:1.1.3")
 
     implementation(Deps.Okhttp.core)
     implementation(Deps.Misc.okio)
@@ -84,8 +82,5 @@ dependencies {
     testImplementation(Deps.Test.robolectric)
     testImplementation(Deps.Okhttp.Test.mockwebserver)
     testImplementation(Deps.Test.mockk)
-    testImplementation("junit:junit:4.12")
-    androidTestImplementation("com.android.support.test:runner:1.0.2")
-    androidTestImplementation("com.android.support.test.espresso:espresso-core:3.0.2")
 
 }

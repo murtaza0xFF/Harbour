@@ -1,8 +1,2 @@
-<manifest
-        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-        package="com.murtaza0xff.harbour.listing">
-    <application tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ListingActivity"/>
-    </application>
-</manifest>
-
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.murtaza0xff.harbour.listing"/>
