@@ -8,7 +8,6 @@ import dagger.Component
 @Component(modules = [HarbourModule::class])
 interface HarbourComponent {
     fun inject(harbour: Harbour)
-//    fun listingComponentBuilder(): ListingComponent.Builder
 
     @Component.Builder
     interface Builder {
