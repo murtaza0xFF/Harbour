@@ -12,6 +12,8 @@ object Versions {
     const val moshi = "1.8.0"
     const val klint = "7.1.0"
     const val autoDispose = "1.1.0"
+    const val firebase_db = "16.0.6"
+    const val google_services = "4.2.0"
 }
 
 object Deps {
@@ -118,6 +120,8 @@ object Deps {
         const val recyclerViewAnimators = "jp.wasabeef:recyclerview-animators:3.0.0"
         const val timber = "com.jakewharton.timber:timber:4.7.1"
         const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
+        const val firebase_db = "com.google.firebase:firebase-database:${Versions.firebase_db}"
+        const val google_services = "com.google.gms:google-services:${Versions.google_services}"
     }
 
     object Stetho {

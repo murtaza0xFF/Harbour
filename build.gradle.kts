@@ -14,6 +14,7 @@ buildscript{
         classpath(Deps.android_gradle_plugin)
         classpath(Deps.kotlin_gradle_plugin)
         classpath(Deps.Misc.klint)
+        classpath(Deps.Misc.google_services)
     }
 }
 

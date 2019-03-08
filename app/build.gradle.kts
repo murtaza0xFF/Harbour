@@ -28,6 +28,7 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(project(":firebaseapi"))
     implementation(Deps.kotlin_stdlib)
     implementation(Deps.Dagger.runtime)
     kapt(Deps.Dagger.compiler)

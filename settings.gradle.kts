@@ -1,1 +1,1 @@
-include(":app", ":listing", ":story")
+include(":app", ":firebaseapi", ":story")
