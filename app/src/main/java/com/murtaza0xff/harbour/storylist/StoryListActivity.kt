@@ -3,7 +3,6 @@ package com.murtaza0xff.harbour.storylist
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.murtaza0xff.harbour.Harbour
-import com.murtaza0xff.harbour.firebaseapi.models.NewStory
 import com.murtaza0xff.harbour.firebaseapi.network.FirebaseService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -25,10 +24,6 @@ class StoryListActivity : AppCompatActivity() {
 
         firebaseService
             .fetchItemIds(NewStory(), 0, 25)
-            .map { it.value as Long }
-            .concatMapEager {
-                firebaseService.fetchDetailsFromItemId(it)
-            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {

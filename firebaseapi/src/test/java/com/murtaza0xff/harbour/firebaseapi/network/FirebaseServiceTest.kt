@@ -3,7 +3,6 @@ package com.murtaza0xff.harbour.firebaseapi.network
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.murtaza0xff.harbour.firebaseapi.models.NewStory
 import com.squareup.moshi.Moshi
 import io.mockk.MockKAnnotations
 import io.mockk.every
