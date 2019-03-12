@@ -148,6 +148,10 @@ object Deps {
         }
 
         const val junit = "junit:junit:4.12"
+        const val junit5_plugin = "de.mannodermaus.gradle.plugins:android-junit5:1.3.2.0"
+        const val junit5 = "org.junit.jupiter:junit-jupiter-api:5.3.2"
+        const val junit5_engine = "org.junit.jupiter:junit-jupiter-engine:5.3.2"
+        const val junit5_params = "org.junit.jupiter:junit-jupiter-params:5.3.2"
         const val robolectric = "org.robolectric:robolectric:4.0-alpha-1"
         const val mockk = "io.mockk:mockk:${Versions.mockk}"
     }

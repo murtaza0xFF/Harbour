@@ -22,7 +22,7 @@ class StoryListActivity : AppCompatActivity() {
             .storyListComponentBuilder()
             .build()
             .inject(this)
-        
+
         firebaseService
             .fetchItemIds(NewStory(), 0, 25)
             .map { it.value as Long }

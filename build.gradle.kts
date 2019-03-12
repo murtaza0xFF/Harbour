@@ -12,6 +12,7 @@ buildscript{
     }
     dependencies {
         classpath(Deps.android_gradle_plugin)
+        classpath(Deps.Test.junit5_plugin)
         classpath(Deps.kotlin_gradle_plugin)
         classpath(Deps.Misc.klint)
         classpath(Deps.Misc.google_services)

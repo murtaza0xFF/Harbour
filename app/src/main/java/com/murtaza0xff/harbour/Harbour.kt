@@ -6,7 +6,6 @@ import com.murtaza0xff.harbour.injections.HarbourComponent
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
-
 class Harbour : Application() {
 
     companion object {
