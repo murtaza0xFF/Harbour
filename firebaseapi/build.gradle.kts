@@ -36,10 +36,8 @@ dependencies {
     implementation(Deps.Misc.firebase_db)
     implementation(Deps.Rx.android)
     implementation(Deps.Rx.java)
+    implementation(Deps.Misc.moshi)
     kapt(Deps.Dagger.compiler)
     testImplementation(Deps.Test.junit)
 }
 
-repositories {
-    mavenCentral()
-}

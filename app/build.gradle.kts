@@ -33,6 +33,7 @@ dependencies {
     implementation(Deps.Dagger.runtime)
     kapt(Deps.Dagger.compiler)
 
+    implementation(Deps.Misc.firebase_db)
     implementation(Deps.Android.Androidx.annotations)
     implementation(Deps.Android.Androidx.appCompat)
     implementation(Deps.Android.Androidx.core)
@@ -85,3 +86,5 @@ dependencies {
     testImplementation(Deps.Test.mockk)
 
 }
+
+apply(plugin = "com.google.gms.google-services")

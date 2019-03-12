@@ -1,49 +1,61 @@
 package com.murtaza0xff.harbour.firebaseapi.network
 
 import com.google.firebase.database.*
-import com.murtaza0xff.harbour.firebaseapi.SealedStory
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
+import com.murtaza0xff.harbour.firebaseapi.models.SealedStory
+import com.squareup.moshi.Moshi
+import io.reactivex.Observable
+import io.reactivex.Single
+import javax.inject.Inject
 
 
-class FirebaseService {
+class FirebaseService @Inject constructor(private val firebaseDatabase: FirebaseDatabase, private val moshi: Moshi) {
 
-    private val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance(" https://hacker-news.firebaseio.com/")
-
-    fun fetchPage(sealedStory: SealedStory) {
-        when (sealedStory) {
-            is SealedStory.NewStory -> observeValueEvent(
-                firebaseDatabase.getReference(sealedStory.route),
-                BackpressureStrategy.LATEST
-            )
-            is SealedStory.BestStory -> observeValueEvent(
-                firebaseDatabase.getReference(sealedStory.route),
-                BackpressureStrategy.LATEST
-            )
-            is SealedStory.TopStory -> observeValueEvent(
-                firebaseDatabase.getReference(sealedStory.route),
-                BackpressureStrategy.LATEST
-            )
-        }
+    fun fetchItemIds(sealedStory: SealedStory, page: Int, itemsPerPage: Long = 25): Observable<DataSnapshot> {
+        return getSelectedFeed(sealedStory)
+            .flattenAsObservable { it.children }
+            .skip(page.plus(1).times(itemsPerPage).minus(itemsPerPage))
+            .take(itemsPerPage)
     }
 
-    private fun observeValueEvent(query: Query, strategy: BackpressureStrategy): Flowable<DataSnapshot> {
-        return Flowable.create({ emitter ->
+    private fun getSelectedFeed(sealedStory: SealedStory): Single<DataSnapshot> = observeValueEvent(
+        firebaseDatabase.getReference(sealedStory.route)
+    )
+
+    private fun observeValueEvent(query: Query): Single<DataSnapshot> {
+        return Single.create { emitter ->
             val valueEventListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    emitter.onNext(dataSnapshot)
+                    emitter.onSuccess(dataSnapshot)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    if (!emitter.isCancelled)
-                        emitter.onError(Throwable(error.message))
+                    emitter.onError(error.toException())
                 }
             }
             emitter.setCancellable {
                 query.removeEventListener(valueEventListener)
             }
             query.addValueEventListener(valueEventListener)
-        }, strategy)
+        }
     }
 
+    fun fetchDetailsFromItemId(id: Long): Observable<DataSnapshot> {
+        return Observable.create<DataSnapshot> {
+            val ref = firebaseDatabase.getReference("v0/item/$id")
+            val listener = object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    it.onError(error.toException())
+                }
+
+                override fun onDataChange(data: DataSnapshot) {
+                    it.onNext(data)
+                    it.onComplete()
+                }
+            }
+            it.setCancellable {
+                ref.removeEventListener(listener)
+            }
+            ref.addValueEventListener(listener)
+        }
+    }
 }

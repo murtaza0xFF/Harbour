@@ -14,6 +14,7 @@ object Versions {
     const val autoDispose = "1.1.0"
     const val firebase_db = "16.0.6"
     const val google_services = "4.2.0"
+    const val firebase_core = "16.0.7"
 }
 
 object Deps {
@@ -121,6 +122,7 @@ object Deps {
         const val timber = "com.jakewharton.timber:timber:4.7.1"
         const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
         const val firebase_db = "com.google.firebase:firebase-database:${Versions.firebase_db}"
+        const val firebase_core = "com.google.firebase:firebase-core:${Versions.firebase_core}"
         const val google_services = "com.google.gms:google-services:${Versions.google_services}"
     }
 
