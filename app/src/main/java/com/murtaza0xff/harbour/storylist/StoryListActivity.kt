@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.murtaza0xff.harbour.Harbour
 import com.murtaza0xff.harbour.firebaseapi.models.NewStory
+import com.murtaza0xff.harbour.firebaseapi.models.TopStory
 import com.murtaza0xff.harbour.firebaseapi.network.FirebaseService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -24,9 +25,9 @@ class StoryListActivity : AppCompatActivity() {
             .inject(this)
 
         firebaseService
-            .fetchItem(NewStory(), 0, 10)
+            .fetchItem(TopStory(), 0, 10)
             .doOnNext {
-                Timber.d("Post ID: ${it.id}")
+                Timber.d("HN Post: $it")
             }
             .filter {
                 it.kids != null
@@ -35,7 +36,7 @@ class StoryListActivity : AppCompatActivity() {
                 it.kids
             }
             .flatMap {
-                firebaseService.fetchComments(it)
+                firebaseService.fetchChildren(it)
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
