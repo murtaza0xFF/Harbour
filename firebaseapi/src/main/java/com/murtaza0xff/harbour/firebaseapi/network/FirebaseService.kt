@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class FirebaseService @Inject constructor(private val firebaseDatabase: FirebaseDatabase, private val moshi: Moshi) {
 
-    fun fetchItems(sealedStory: SealedStory, page: Int, itemsPerPage: Long = 25): Observable<HackerNewsItem> {
+    fun fetchItem(sealedStory: SealedStory, page: Int, itemsPerPage: Long = 25): Observable<HackerNewsItem> {
         return fetchItemIds(sealedStory, page, itemsPerPage)
             .map { it.value as Long }
             .concatMapEager(this::fetchDetailsFromItemId)
@@ -49,7 +49,7 @@ class FirebaseService @Inject constructor(private val firebaseDatabase: Firebase
 
     private fun fetchDetailsFromItemId(id: Long): Observable<DataSnapshot> {
         return Observable.create<DataSnapshot> {
-            val ref = firebaseDatabase.getReference("v0/item/$id")
+            val databaseReference = firebaseDatabase.getReference("v0/item/$id")
             val listener = object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
                     it.onError(error.toException())
@@ -61,9 +61,19 @@ class FirebaseService @Inject constructor(private val firebaseDatabase: Firebase
                 }
             }
             it.setCancellable {
-                ref.removeEventListener(listener)
+                databaseReference.removeEventListener(listener)
             }
-            ref.addValueEventListener(listener)
+            databaseReference.addValueEventListener(listener)
         }
+    }
+
+    fun fetchComments(ids: List<Long>): Observable<HackerNewsItem> {
+        return Observable
+            .fromIterable(ids)
+            .flatMap {
+                fetchDetailsFromItemId(it)
+            }
+            .map(HackerNewsItem.Companion::create)
+
     }
 }

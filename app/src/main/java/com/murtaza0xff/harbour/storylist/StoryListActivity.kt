@@ -24,11 +24,23 @@ class StoryListActivity : AppCompatActivity() {
             .inject(this)
 
         firebaseService
-            .fetchItems(NewStory(), 0, 25)
+            .fetchItem(NewStory(), 0, 10)
+            .doOnNext {
+                Timber.d("Post ID: ${it.id}")
+            }
+            .filter {
+                it.kids != null
+            }
+            .map {
+                it.kids
+            }
+            .flatMap {
+                firebaseService.fetchComments(it)
+            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                Timber.d(it.toString())
+                Timber.d("Comment: $it")
             }
     }
 }

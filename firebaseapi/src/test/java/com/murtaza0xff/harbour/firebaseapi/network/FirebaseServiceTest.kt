@@ -40,7 +40,7 @@ class FirebaseServiceTest {
         every { databaseReference.removeEventListener(any<ValueEventListener>()) } answers { }
 
         service
-            .fetchItems(NewStory(), 0, 25)
+            .fetchItem(NewStory(), 0, 25)
 //            .concatMapEager {
 //                service.fetchDetailsFromItemId(it)
 //            }
