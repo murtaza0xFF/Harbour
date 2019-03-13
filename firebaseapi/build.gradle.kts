@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("de.mannodermaus.android-junit5")
+    id("kotlin-noarg")
     kotlin("android.extensions")
     kotlin("android")
     kotlin("kapt")
@@ -28,6 +29,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
 
+}
+
+noArg {
+    annotation("com.murtaza0xff.harbour.firebaseapi.NoArg")
 }
 
 dependencies {

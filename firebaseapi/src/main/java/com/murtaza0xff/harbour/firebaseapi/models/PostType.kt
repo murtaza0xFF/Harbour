@@ -1,9 +1,12 @@
 package com.murtaza0xff.harbour.firebaseapi.models
 
-sealed class PostType
-object Story : PostType()
-object Comment : PostType()
-object Ask : PostType()
-object Job : PostType()
-object Poll : PostType()
-object PollOpt : PostType()
+import androidx.annotation.Keep
+
+@Keep
+sealed class PostType(val type: String)
+object Story : PostType("story")
+object Comment : PostType("comment")
+object Ask : PostType("ask")
+object Job : PostType("job")
+object Poll : PostType("poll")
+object PollOpt : PostType("pollopt")

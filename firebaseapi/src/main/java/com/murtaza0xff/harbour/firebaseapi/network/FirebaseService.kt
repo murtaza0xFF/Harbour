@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class FirebaseService @Inject constructor(private val firebaseDatabase: FirebaseDatabase, private val moshi: Moshi) {
 
-    fun fetchItems(sealedStory: SealedStory, page: Int, itemsPerPage: Long = 25): Observable<HackerNewsItem>? {
+    fun fetchItems(sealedStory: SealedStory, page: Int, itemsPerPage: Long = 25): Observable<HackerNewsItem> {
         return fetchItemIds(sealedStory, page, itemsPerPage)
             .map { it.value as Long }
             .concatMapEager(this::fetchDetailsFromItemId)
