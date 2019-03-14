@@ -11,33 +11,27 @@ import javax.inject.Inject
 
 class FirebaseService @Inject constructor(private val firebaseDatabase: FirebaseDatabase, private val moshi: Moshi) {
 
-    fun fetchItem(sealedStory: SealedStory, page: Int, itemsPerPage: Long = 25): Flowable<HackerNewsItem> {
-        return fetchItemId(sealedStory, page, itemsPerPage)
-            .map { it.value as Long }
-            .toFlowable(BackpressureStrategy.LATEST)
-            .concatMapEager {
-                observeItem(firebaseDatabase.getReference("v0/item/$it"))
-            }
-            .map(HackerNewsItem.Companion::create)
-    }
-
-    fun fetchChildren(ids: List<Long>): Flowable<HackerNewsItem> {
-        return Flowable
-            .fromIterable(ids)
-            .flatMap {
-                observeItem(firebaseDatabase.getReference("v0/item/$it"))
-            }
-            .map(HackerNewsItem.Companion::create)
-
-    }
-
-    private fun fetchItemId(sealedStory: SealedStory, page: Int, itemsPerPage: Long = 25): Observable<DataSnapshot> {
+    fun fetchItemIds(sealedStory: SealedStory, page: Int, itemsPerPage: Long = 25): Flowable<Long> {
         return getSelectedFeed(sealedStory)
             .flattenAsObservable {
                 it.children
             }
             .skip(page.plus(1).times(itemsPerPage).minus(itemsPerPage))
             .take(itemsPerPage)
+            .map { it.value as Long }
+            .toFlowable(BackpressureStrategy.LATEST)
+    }
+
+    fun fetchChildrenId(ids: List<Long>): Flowable<Long> {
+        return Flowable
+            .fromIterable(ids)
+    }
+
+    fun fetchHnItemFromId(id: Flowable<Long>): Flowable<HackerNewsItem> {
+        return id.concatMapEager {
+                observeItem(firebaseDatabase.getReference("v0/item/$it"))
+            }
+            .map(HackerNewsItem.Companion::create)
     }
 
     private fun getSelectedFeed(sealedStory: SealedStory): Single<DataSnapshot> = observeRoute(

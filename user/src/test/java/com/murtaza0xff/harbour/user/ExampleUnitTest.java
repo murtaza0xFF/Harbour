@@ -1,4 +1,4 @@
-package com.murtaza0xff.harbour.story;
+package com.murtaza0xff.harbour.user;
 
 import org.junit.Test;
 

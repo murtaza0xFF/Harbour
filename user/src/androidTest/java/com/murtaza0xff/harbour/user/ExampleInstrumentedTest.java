@@ -1,4 +1,4 @@
-package com.murtaza0xff.harbour.story;
+package com.murtaza0xff.harbour.user;
 
 import android.content.Context;
 import androidx.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.murtaza0xff.harbour.story.test", appContext.getPackageName());
+        assertEquals("com.murtaza0xff.harbour.user.test", appContext.getPackageName());
     }
 }
