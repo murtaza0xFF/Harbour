@@ -34,6 +34,7 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(Deps.kotlin_stdlib)
+    implementation(Deps.Okhttp.core)
     implementation(Deps.Dagger.runtime)
     implementation(Deps.Misc.firebase_db)
     implementation(Deps.Rx.android)

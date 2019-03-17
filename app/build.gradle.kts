@@ -29,6 +29,7 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(":firebaseapi"))
+    implementation(project(":user"))
     implementation(Deps.kotlin_stdlib)
     implementation(Deps.Dagger.runtime)
     kapt(Deps.Dagger.compiler)
@@ -58,6 +59,7 @@ dependencies {
     implementation(Deps.Android.Androidx.appCompat)
 
     implementation(Deps.Okhttp.core)
+    implementation(Deps.Okhttp.Debug.loggingInterceptor)
     implementation(Deps.Misc.okio)
     implementation(Deps.Retrofit.core)
     implementation(Deps.Retrofit.moshi)

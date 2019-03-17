@@ -5,9 +5,12 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.google.firebase.database.FirebaseDatabase
 import com.murtaza0xff.harbour.firebaseapi.network.FirebaseService
+import com.murtaza0xff.harbour.user.UserService
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import javax.inject.Singleton
 
 @Module
@@ -42,6 +45,23 @@ abstract class HarbourModule {
         @Singleton
         fun providesFirebaseService(firebaseDatabase: FirebaseDatabase, moshi: Moshi): FirebaseService {
             return FirebaseService(firebaseDatabase, moshi)
+        }
+
+        @JvmStatic
+        @Provides
+        @Singleton
+        fun provideUserService(): UserService {
+            return UserService()
+        }
+
+        @JvmStatic
+        @Provides
+        @Singleton
+        fun providesOkHttp(): OkHttpClient {
+            return OkHttpClient()
+                .newBuilder()
+                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .build()
         }
     }
 }

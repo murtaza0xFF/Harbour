@@ -3,18 +3,21 @@ package com.murtaza0xff.harbour.storylist
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.murtaza0xff.harbour.Harbour
-import com.murtaza0xff.harbour.firebaseapi.models.NewStory
-import com.murtaza0xff.harbour.firebaseapi.models.TopStory
 import com.murtaza0xff.harbour.firebaseapi.network.FirebaseService
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
+import com.murtaza0xff.harbour.user.UserService
+import okhttp3.OkHttpClient
 import javax.inject.Inject
 
 class StoryListActivity : AppCompatActivity() {
 
     @Inject
     lateinit var firebaseService: FirebaseService
+
+    @Inject
+    lateinit var userService: UserService
+
+    @Inject
+    lateinit var okHttpClient: OkHttpClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,12 +27,5 @@ class StoryListActivity : AppCompatActivity() {
             .build()
             .inject(this)
 
-        with(firebaseService) {
-            fetchHnItemFromId(fetchItemIds(TopStory(), 0, 10))
-        }.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                Timber.d("HN item: $it")
-            }
     }
 }
