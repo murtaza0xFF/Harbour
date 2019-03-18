@@ -49,7 +49,7 @@ class FirebaseServiceTest {
                 it.value as Long
             }
             .concatMapEager {
-                service.observeItem(databaseReference)
+                service.observeHnItem(databaseReference)
             }.test()
 
         databaseReference.setValue(1)
