@@ -1,1 +1,1 @@
-include(":app", ":firebaseapi", ":user")
+include(":app", ":firebaseapi", ":user", ":algolia")

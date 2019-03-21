@@ -16,7 +16,6 @@ class FirebaseService @Inject constructor(private val firebaseDatabase: Firebase
     /**
      * Fetch the HN items from the provided either topstories, beststories, or hotstories
      */
-
     fun fetchItemIds(sealedStory: SealedStory, page: Int, itemsPerPage: Long = 25): Flowable<Long> {
         return getSelectedFeed(sealedStory)
             .flattenAsObservable {
@@ -36,7 +35,6 @@ class FirebaseService @Inject constructor(private val firebaseDatabase: Firebase
     /**
      * From the IDs retrieved, retrieve the content of each ID.
      */
-
     fun fetchHnItemFromId(id: Flowable<Long>): Flowable<HackerNewsItem> {
         return id.concatMapEager {
             observeHnItem(firebaseDatabase.getReference("v0/item/$it"))

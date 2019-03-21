@@ -5,7 +5,7 @@ import com.google.firebase.database.DataSnapshot
 import com.murtaza0xff.harbour.firebaseapi.NoArg
 
 @Keep
-@NoArg
+//@NoArg
 data class HackerNewsItem(
     var id: Long,
     var deleted: Boolean,
