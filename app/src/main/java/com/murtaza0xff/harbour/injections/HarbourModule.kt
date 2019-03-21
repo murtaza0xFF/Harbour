@@ -35,6 +35,7 @@ abstract class HarbourModule {
         @Named("algolia")
         fun providesRetrofit(): Retrofit {
             return Retrofit.Builder()
+                .baseUrl("http://hn.algolia.com/api/v1/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
         }
