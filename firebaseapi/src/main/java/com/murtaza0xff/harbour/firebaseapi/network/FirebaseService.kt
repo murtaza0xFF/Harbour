@@ -11,7 +11,7 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 
-class FirebaseService @Inject constructor(private val firebaseDatabase: FirebaseDatabase, private val moshi: Moshi) {
+class FirebaseService @Inject constructor(private val firebaseDatabase: FirebaseDatabase) {
 
     /**
      * Fetch the HN items from the provided either topstories, beststories, or hotstories
