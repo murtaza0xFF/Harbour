@@ -9,16 +9,19 @@ buildscript{
         }
     }
     dependencies {
-        classpath(Deps.android_gradle_plugin)
-        classpath(Deps.Test.junit5_plugin)
-        classpath(Deps.kotlin_noarg)
-        classpath(Deps.kotlin_gradle_plugin)
-        classpath(Deps.Misc.klint)
-        classpath(Deps.Misc.google_services)
+        classpath(Libs.com_android_tools_build_gradle)
+        classpath(Libs.android_junit5)
+        classpath(Libs.kotlin_noarg)
+        classpath(Libs.kotlin_gradle_plugin)
+        classpath(Libs.ktlint_gradle)
+        classpath(Libs.google_services)
     }
 }
 
 plugins.apply("org.jlleitschuh.gradle.ktlint")
+plugins {
+    id("de.fayard.buildSrcVersions") version "0.3.2"
+}
 
 allprojects {
     repositories {

@@ -30,22 +30,21 @@ android {
 
 }
 
-
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(Deps.kotlin_stdlib)
-    implementation(Deps.Retrofit.core)
-    implementation(Deps.Okhttp.core)
-    implementation(Deps.Dagger.runtime)
-    implementation(Deps.Misc.firebase_db)
-    implementation(Deps.Rx.android)
-    implementation(Deps.Rx.java)
-    implementation(Deps.Misc.moshi)
-    kapt(Deps.Dagger.compiler)
-    testImplementation(Deps.Test.junit)
-    testImplementation(Deps.Test.junit5)
-    testRuntimeOnly(Deps.Test.junit5_engine)
-    testImplementation(Deps.Test.junit5_params)
-    testImplementation(Deps.Test.mockk)
+    implementation(Libs.retrofit)
+    implementation(Libs.okhttp)
+    implementation(Libs.kotlin_stdlib_jdk7)
+    implementation(Libs.dagger)
+    implementation(Libs.firebase_database)
+    implementation(Libs.rxandroid)
+    implementation(Libs.rxjava)
+    implementation(Libs.moshi_kotlin)
+    kapt(Libs.dagger_compiler)
+    testImplementation(Libs.junit)
+    testImplementation(Libs.junit_jupiter_api)
+    testRuntimeOnly(Libs.junit_jupiter_engine)
+    testImplementation(Libs.junit_jupiter_params)
+    testImplementation(Libs.mockk)
 }
 

@@ -8,12 +8,12 @@
           android:title="@string/show_hn"
           android:icon="@drawable/ic_computer"
           app:showAsAction="always"/>
-    <item android:id="@+id/job_hn"
-          android:title="@string/jobs"
-          android:icon="@drawable/ic_work"
-          app:showAsAction="always"/>
     <item android:id="@+id/ask_hn"
           android:title="@string/ask_hn"
           android:icon="@drawable/ic_question_answer"
+          app:showAsAction="always"/>
+    <item android:id="@+id/job_hn"
+          android:title="@string/jobs"
+          android:icon="@drawable/ic_work"
           app:showAsAction="always"/>
 </menu>

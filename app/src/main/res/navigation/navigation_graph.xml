@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/navigation_graph">
+
+    <custom_view
+            android:id="@+id/stories_hn"
+            app:layoutId="@layout/view_start"
+            tools:layout="@layout/view_start"/>
+    <custom_view
+            android:id="@+id/show_hn"
+            app:layoutId="@layout/view_stage_one"
+            tools:layout="@layout/view_stage_one"/>
+    <custom_view
+            android:id="@+id/ask_hn"
+            app:layoutId="@layout/view_stage_two"
+            tools:layout="@layout/view_stage_two"/>
+    <custom_view
+            android:id="@+id/jobs_hn"
+            app:layoutId="@layout/view_stage_two"
+            tools:layout="@layout/view_stage_two"/>
+</navigation>
+
