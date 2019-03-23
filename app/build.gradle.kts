@@ -49,6 +49,7 @@ dependencies {
     implementation(Deps.Android.Androidx.preferenceKtx)
     implementation(Deps.Android.Androidx.viewPager)
     implementation(Deps.Android.Androidx.swipeRefresh)
+    implementation(Deps.Android.Androidx.appCompat)
 
     implementation(Deps.Android.Androidx.Lifecycle.extensions)
     kapt(Deps.Android.Androidx.Lifecycle.apt)
@@ -56,8 +57,6 @@ dependencies {
     implementation(Deps.Android.Androidx.Room.rxJava2)
     implementation(Deps.Misc.autoDispose)
     kapt(Deps.Android.Androidx.Room.apt)
-
-    implementation(Deps.Android.Androidx.appCompat)
 
     implementation(Deps.Okhttp.core)
     implementation(Deps.Okhttp.Debug.loggingInterceptor)

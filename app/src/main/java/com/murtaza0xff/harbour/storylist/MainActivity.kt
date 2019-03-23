@@ -1,20 +1,13 @@
 package com.murtaza0xff.harbour.storylist
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.murtaza0xff.harbour.Harbour
 import com.murtaza0xff.harbour.R
-import com.murtaza0xff.harbour.algolia.AlgoliaService
-import com.murtaza0xff.harbour.firebaseapi.models.BestStory
-import com.murtaza0xff.harbour.firebaseapi.network.FirebaseService
-import com.murtaza0xff.harbour.user.UserService
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import okhttp3.OkHttpClient
-import timber.log.Timber
-import javax.inject.Inject
 
-class StoryListActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +17,9 @@ class StoryListActivity : AppCompatActivity() {
             .storyListComponentBuilder()
             .build()
             .inject(this)
+    }
 
-
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return true
     }
 }

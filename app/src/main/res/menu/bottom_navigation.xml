@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/stories_hn"
+          android:title="@string/stories"
+          android:icon="@drawable/ic_view_headline"
+          app:showAsAction="always"/>
+    <item android:id="@+id/show_hn"
+          android:title="@string/show_hn"
+          android:icon="@drawable/ic_computer"
+          app:showAsAction="always"/>
+    <item android:id="@+id/job_hn"
+          android:title="@string/jobs"
+          android:icon="@drawable/ic_work"
+          app:showAsAction="always"/>
+    <item android:id="@+id/ask_hn"
+          android:title="@string/ask_hn"
+          android:icon="@drawable/ic_question_answer"
+          app:showAsAction="always"/>
+</menu>

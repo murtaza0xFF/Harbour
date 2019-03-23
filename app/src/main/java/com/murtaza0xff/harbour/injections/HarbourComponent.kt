@@ -8,7 +8,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [HarbourModule::class])
+@Component(modules = [HarbourModule::class, NetworkModule::class])
 interface HarbourComponent {
     fun inject(harbour: Harbour)
     fun storyListComponentBuilder(): StoryListComponent.Builder

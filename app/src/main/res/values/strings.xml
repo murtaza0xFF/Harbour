@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">harbour</string>
     <string name="title_listing">Harbour HN listing</string>
+    <string name="stories">Stories</string>
+    <string name="show_hn">Show HN</string>
+    <string name="jobs">jobs</string>
+    <string name="ask_hn">Ask HN</string>
 </resources>

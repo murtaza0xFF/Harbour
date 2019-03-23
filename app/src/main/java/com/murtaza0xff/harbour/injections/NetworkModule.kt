@@ -20,7 +20,7 @@ abstract class NetworkModule {
         @JvmStatic
         @Provides
         @Singleton
-        fun providesOkHttp(): OkHttpClient {
+        fun okHttp(): OkHttpClient {
             return OkHttpClient()
                 .newBuilder()
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
@@ -31,7 +31,7 @@ abstract class NetworkModule {
         @Provides
         @Singleton
         @Named("algolia")
-        fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        fun retrofit(okHttpClient: OkHttpClient): Retrofit {
             return Retrofit.Builder()
                 .baseUrl("https://hn.algolia.com/api/v1/")
                 .addConverterFactory(MoshiConverterFactory.create())
@@ -43,7 +43,7 @@ abstract class NetworkModule {
         @JvmStatic
         @Provides
         @Singleton
-        fun providesAlgoliaService(@Named("algolia") retrofit: Retrofit): AlgoliaService {
+        fun algoliaService(@Named("algolia") retrofit: Retrofit): AlgoliaService {
             return AlgoliaService(retrofit.create(AlgoliaApi::class.java))
         }
     }

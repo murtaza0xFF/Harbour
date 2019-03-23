@@ -15,6 +15,7 @@ import javax.inject.Singleton
 abstract class HarbourModule {
     @Module
     companion object {
+
         @JvmStatic
         @Provides
         @Singleton
@@ -25,7 +26,7 @@ abstract class HarbourModule {
         @JvmStatic
         @Provides
         @Singleton
-        fun providesMoshi(): Moshi {
+        fun moshi(): Moshi {
             return Moshi
                 .Builder()
                 .build()
@@ -34,21 +35,21 @@ abstract class HarbourModule {
         @JvmStatic
         @Provides
         @Singleton
-        fun providesFirebaseDatabase(): FirebaseDatabase {
+        fun firebaseDatabase(): FirebaseDatabase {
             return FirebaseDatabase.getInstance()
         }
 
         @JvmStatic
         @Provides
         @Singleton
-        fun providesFirebaseService(firebaseDatabase: FirebaseDatabase): FirebaseService {
+        fun firebaseService(firebaseDatabase: FirebaseDatabase): FirebaseService {
             return FirebaseService(firebaseDatabase)
         }
 
         @JvmStatic
         @Provides
         @Singleton
-        fun provideUserService(): UserService {
+        fun userService(): UserService {
             return UserService()
         }
     }
