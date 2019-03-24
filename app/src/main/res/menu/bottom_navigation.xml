@@ -12,7 +12,7 @@
           android:title="@string/ask_hn"
           android:icon="@drawable/ic_question_answer"
           app:showAsAction="always"/>
-    <item android:id="@+id/job_hn"
+    <item android:id="@+id/jobs_hn"
           android:title="@string/jobs"
           android:icon="@drawable/ic_work"
           app:showAsAction="always"/>

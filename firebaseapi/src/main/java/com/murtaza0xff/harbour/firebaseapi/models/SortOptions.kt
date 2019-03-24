@@ -1,11 +1,11 @@
 package com.murtaza0xff.harbour.firebaseapi.models
 
-sealed class SealedStory(val route: String)
-class NewStory : SealedStory("v0/newstories")
-class TopStory : SealedStory("v0/topstories")
-class BestStory : SealedStory("v0/beststories")
-class AskStory: SealedStory("v0/askstories")
-class ShowStory: SealedStory("v0/showstories")
-class JobStory: SealedStory("v0/jobstories")
+sealed class SortOptions(val route: String)
+class NewStory : SortOptions("v0/newstories")
+class TopStory : SortOptions("v0/topstories")
+class BestStory : SortOptions("v0/beststories")
+class AskStory: SortOptions("v0/askstories")
+class ShowStory: SortOptions("v0/showstories")
+class JobStory: SortOptions("v0/jobstories")
 
 

@@ -3,8 +3,7 @@ package com.murtaza0xff.harbour.firebaseapi.network
 import androidx.annotation.VisibleForTesting
 import com.google.firebase.database.*
 import com.murtaza0xff.harbour.firebaseapi.models.HackerNewsItem
-import com.murtaza0xff.harbour.firebaseapi.models.SealedStory
-import com.squareup.moshi.Moshi
+import com.murtaza0xff.harbour.firebaseapi.models.SortOptions
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -16,8 +15,8 @@ class FirebaseService @Inject constructor(private val firebaseDatabase: Firebase
     /**
      * Fetch the HN items from the provided either topstories, beststories, or hotstories
      */
-    fun fetchItemIds(sealedStory: SealedStory, page: Int, itemsPerPage: Long = 25): Flowable<Long> {
-        return getSelectedFeed(sealedStory)
+    fun fetchItemIds(sortOptions: SortOptions, page: Int, itemsPerPage: Long = 25): Flowable<Long> {
+        return getSelectedFeed(sortOptions)
             .flattenAsObservable {
                 it.children
             }
@@ -42,8 +41,8 @@ class FirebaseService @Inject constructor(private val firebaseDatabase: Firebase
             .map(HackerNewsItem.Companion::create)
     }
 
-    private fun getSelectedFeed(sealedStory: SealedStory): Single<DataSnapshot> = observeHnRoute(
-        firebaseDatabase.getReference(sealedStory.route)
+    private fun getSelectedFeed(sortOptions: SortOptions): Single<DataSnapshot> = observeHnRoute(
+        firebaseDatabase.getReference(sortOptions.route)
     )
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)

@@ -33,6 +33,8 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(Libs.okhttp)
+    implementation(Libs.retrofit)
     implementation(Libs.kotlin_stdlib_jdk7)
     implementation(Libs.dagger)
     implementation(Libs.firebase_database)
