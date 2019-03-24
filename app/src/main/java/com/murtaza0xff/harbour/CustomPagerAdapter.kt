@@ -9,7 +9,7 @@ import androidx.viewpager.widget.PagerAdapter
 class CustomPagerAdapter(private val context: Context) : PagerAdapter() {
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val viewPagerModel: ViewPagerModel? = ViewPagerModel.viewPagerModelHashMap[position]!!
+        val viewPagerModel: ViewPagerModel = ViewPagerModel.viewPagerModelHashMap[position]!!
         val inflater = LayoutInflater.from(context)
         val layout = inflater.inflate(viewPagerModel.viewPagerLayoutResId, container, false) as ViewGroup
         container.addView(layout)
