@@ -6,7 +6,10 @@ import com.murtaza0xff.harbour.firebaseapi.models.HackerNewsItem
 import com.murtaza0xff.harbour.firebaseapi.models.SortOptions
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
+import io.reactivex.Scheduler
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
@@ -17,13 +20,12 @@ class FirebaseService @Inject constructor(private val firebaseDatabase: Firebase
      */
     fun fetchItemIds(sortOptions: SortOptions, page: Int, itemsPerPage: Long = 25): Flowable<Long> {
         return getSelectedFeed(sortOptions)
-            .flattenAsObservable {
+            .flattenAsFlowable {
                 it.children
             }
             .skip(page.plus(1).times(itemsPerPage).minus(itemsPerPage))
             .take(itemsPerPage)
             .map { it.value as Long }
-            .toFlowable(BackpressureStrategy.LATEST)
     }
 
     fun fetchChildrenId(ids: List<Long>): Flowable<Long> {
@@ -41,16 +43,17 @@ class FirebaseService @Inject constructor(private val firebaseDatabase: Firebase
             .map(HackerNewsItem.Companion::create)
     }
 
-    private fun getSelectedFeed(sortOptions: SortOptions): Single<DataSnapshot> = observeHnRoute(
-        firebaseDatabase.getReference(sortOptions.route)
-    )
+    private fun getSelectedFeed(sortOptions: SortOptions): Single<DataSnapshot> =
+        observeHnRoute(firebaseDatabase.getReference(sortOptions.route))
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun observeHnRoute(databaseReference: DatabaseReference): Single<DataSnapshot> {
+
         return Single.create<DataSnapshot> {
             val valueEventListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     it.onSuccess(dataSnapshot)
+
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -64,8 +67,7 @@ class FirebaseService @Inject constructor(private val firebaseDatabase: Firebase
         }
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    fun observeHnItem(databaseReference: DatabaseReference): Flowable<DataSnapshot> {
+    private fun observeHnItem(databaseReference: DatabaseReference): Flowable<DataSnapshot> {
         return Flowable.create<DataSnapshot>({
             val listener = object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -74,7 +76,6 @@ class FirebaseService @Inject constructor(private val firebaseDatabase: Firebase
 
                 override fun onDataChange(data: DataSnapshot) {
                     it.onNext(data)
-                    it.onComplete()
                 }
             }
             it.setCancellable {

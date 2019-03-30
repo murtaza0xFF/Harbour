@@ -2,7 +2,7 @@ package com.murtaza0xff.harbour.injections
 
 import android.app.Application
 import com.murtaza0xff.harbour.Harbour
-import com.murtaza0xff.harbour.storylist.di.StoryListComponent
+import com.murtaza0xff.harbour.storylist.injections.StoryListComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

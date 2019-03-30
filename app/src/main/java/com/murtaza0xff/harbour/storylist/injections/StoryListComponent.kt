@@ -1,4 +1,4 @@
-package com.murtaza0xff.harbour.storylist.di
+package com.murtaza0xff.harbour.storylist.injections
 
 import com.murtaza0xff.harbour.storylist.MainActivity
 import dagger.Subcomponent

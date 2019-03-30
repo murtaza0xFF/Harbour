@@ -4,61 +4,94 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.squareup.moshi.Moshi
-import io.mockk.MockKAnnotations
-import io.mockk.every
+import com.murtaza0xff.harbour.firebaseapi.models.HackerNewsItem
+import com.murtaza0xff.harbour.firebaseapi.models.TopStory
+import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
+import io.reactivex.Single
+import org.hamcrest.CoreMatchers.any
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
-import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtendWith
+import java.util.concurrent.TimeUnit
+
 
 @ExtendWith(MockKExtension::class)
 class FirebaseServiceTest {
 
-    init {
-        MockKAnnotations.init(this)
-    }
-
     @MockK
     lateinit var firebaseDatabase: FirebaseDatabase
-    @MockK
-    lateinit var moshi: Moshi
     @RelaxedMockK
     lateinit var databaseReference: DatabaseReference
     @MockK
     lateinit var dataSnapshot: DataSnapshot
-
     private lateinit var service: FirebaseService
+    @Rule
+    @JvmField
+    var testSchedulerRule = RxImmediateSchedulerRule()
+    @MockK
+    lateinit var hackerNewsItem: HackerNewsItem
+
+    @Before
+    fun setup() {
+        MockKAnnotations.init(this)
+        service = FirebaseService(firebaseDatabase)
+    }
+
 
     @Test
-    @DisplayName("When page 0 is requested with elements per page = 25, should return the first 25 posts")
-    fun retrieveFirst25Posts_givenPageNumber0AndItemsPerPage25() {
-        service = FirebaseService(firebaseDatabase, moshi)
+    fun testObserveHnRoute_valueOfDataSnapshotEmittedSameAsProvided() {
+        val slot = CapturingSlot<ValueEventListener>()
+        val childrenList = mockk<MutableList<DataSnapshot>>(relaxed = true)
 
+        every { childrenList.size } returns 500
+        every { dataSnapshot.children } returns childrenList
+        every { dataSnapshot.value } returns 1L
         every { firebaseDatabase.getReference(any()) } returns databaseReference
-        every { databaseReference.removeEventListener(any<ValueEventListener>()) } answers { }
 
-        val observer = Flowable.create<DataSnapshot>({
-            it.onNext(dataSnapshot)
-        }, BackpressureStrategy.LATEST)
-            .map {
-                it.value as Long
+
+        val testSubscriber = service
+            .observeHnRoute(databaseReference)
+            .test()
+
+        verify {
+            databaseReference.addValueEventListener(capture(slot))
+        }
+        slot.captured.onDataChange(dataSnapshot)
+
+        testSubscriber
+            .assertNoErrors()
+            .assertValue {
+                it.value == 1L
             }
-            .concatMapEager {
-                service.observeHnItem(databaseReference)
-            }.test()
-
-        databaseReference.setValue(1)
-        databaseReference.setValue(1)
-        databaseReference.setValue(1)
-        databaseReference.setValue(1)
-        databaseReference.setValue(1)
-
-
-        observer.assertValueCount(5)
+            .dispose()
     }
+
+    @Test
+    fun testFetchHnItemFromId_retrieveHackerNewsItemFromIdProvided(){
+        val slot = CapturingSlot<ValueEventListener>()
+        every { hackerNewsItem.id } returns 19526679
+        every { firebaseDatabase.getReference(any()) } returns databaseReference
+        every { dataSnapshot.getValue(HackerNewsItem::class.java) } returns hackerNewsItem
+
+        val testSubscriber = service
+            .fetchHnItemFromId(Flowable.just(19526679))
+            .test()
+
+        verify {
+            databaseReference.addValueEventListener(capture(slot))
+        }
+        slot.captured.onDataChange(dataSnapshot)
+
+        testSubscriber
+            .assertValue {
+                it.id == 19526679L
+            }
+    }
+
 }
