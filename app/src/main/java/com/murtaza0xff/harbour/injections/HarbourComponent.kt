@@ -2,7 +2,8 @@ package com.murtaza0xff.harbour.injections
 
 import android.app.Application
 import com.murtaza0xff.harbour.Harbour
-import com.murtaza0xff.harbour.storylist.injections.StoryListComponent
+import com.murtaza0xff.harbour.MainActivity
+import com.murtaza0xff.harbour.frontpage.FrontpageComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -11,7 +12,8 @@ import javax.inject.Singleton
 @Component(modules = [HarbourModule::class, NetworkModule::class])
 interface HarbourComponent {
     fun inject(harbour: Harbour)
-    fun storyListComponentBuilder(): StoryListComponent.Builder
+    fun inject(activity: MainActivity)
+    fun frontPageComponentBuilder(): FrontpageComponent.Builder
 
     @Component.Builder
     interface Builder {

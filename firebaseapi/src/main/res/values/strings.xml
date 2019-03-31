@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FirebaseAPI</string>
+    <string name="ask_hn">Ask HN</string>
+    <string name="job_hn">Jobs HN</string>
+    <string name="show_hn">Show HN</string>
+    <string name="story_hn">Story HN</string>
 </resources>

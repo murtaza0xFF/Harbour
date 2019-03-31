@@ -6,20 +6,20 @@
 
     <hn_view
             android:id="@+id/stories_hn"
-            app:layoutId="@layout/view_stories"
-            tools:layout="@layout/view_stories"/>
+            app:layoutId="@layout/view_frontpage"
+            tools:layout="@layout/view_frontpage"/>
 
     <hn_view
             android:id="@+id/show_hn"
-            app:layoutId="@layout/view_show"
-            tools:layout="@layout/view_show"/>
+            app:layoutId="@layout/view_frontpage"
+            tools:layout="@layout/view_frontpage"/>
     <hn_view
             android:id="@+id/ask_hn"
-            app:layoutId="@layout/view_ask"
-            tools:layout="@layout/view_ask"/>
+            app:layoutId="@layout/view_frontpage"
+            tools:layout="@layout/view_frontpage"/>
     <hn_view
             android:id="@+id/jobs_hn"
-            app:layoutId="@layout/view_jobs"
-            tools:layout="@layout/view_jobs"/>
+            app:layoutId="@layout/view_frontpage"
+            tools:layout="@layout/view_frontpage"/>
 </navigation>
 
