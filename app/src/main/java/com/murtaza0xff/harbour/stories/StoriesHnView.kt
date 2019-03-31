@@ -15,5 +15,4 @@ class StoriesHnView @JvmOverloads constructor(context: Context, attrs: Attribute
         addView(view)
         textview.text = "Stories"
     }
-
 }

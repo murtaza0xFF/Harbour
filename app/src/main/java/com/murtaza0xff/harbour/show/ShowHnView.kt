@@ -16,5 +16,4 @@ class ShowHnView @JvmOverloads constructor(context: Context, attrs: AttributeSet
         addView(view)
         textview.text = "Show"
     }
-
 }

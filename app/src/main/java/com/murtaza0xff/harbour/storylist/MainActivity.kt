@@ -8,14 +8,8 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.murtaza0xff.harbour.Harbour
 import com.murtaza0xff.harbour.R
-import com.murtaza0xff.harbour.firebaseapi.models.TopStory
 import com.murtaza0xff.harbour.firebaseapi.network.FirebaseService
-import io.reactivex.Flowable
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import timber.log.Timber
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +31,5 @@ class MainActivity : AppCompatActivity() {
 
         navController = Navigation.findNavController(container)
         setupWithNavController(bottomNavigator, navController)
-        
     }
 }

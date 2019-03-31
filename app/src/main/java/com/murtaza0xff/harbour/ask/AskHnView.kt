@@ -15,5 +15,4 @@ class AskHnView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         addView(view)
         textview.text = "Ask"
     }
-
 }
