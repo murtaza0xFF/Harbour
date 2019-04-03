@@ -3,6 +3,7 @@ plugins {
     kotlin("android.extensions")
     kotlin("android")
     kotlin("kapt")
+    id("androidx.navigation.safeargs")
 }
 android {
     compileSdkVersion(28)
@@ -63,6 +64,9 @@ dependencies {
     testRuntimeOnly(Libs.junit_jupiter_engine)
     testImplementation(Libs.junit_jupiter_params)
     testImplementation(Libs.mockk)
+    implementation(Libs.rxbinding)
+    implementation(Libs.rxbinding_appcompat)
+    implementation(Libs.rxbinding_core)
 }
 
 apply(plugin = "com.google.gms.google-services")
