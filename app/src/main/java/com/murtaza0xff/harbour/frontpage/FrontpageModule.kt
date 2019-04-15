@@ -5,6 +5,7 @@ import com.murtaza0xff.harbour.firebaseapi.injections.JobModule
 import com.murtaza0xff.harbour.firebaseapi.injections.ShowModule
 import com.murtaza0xff.harbour.firebaseapi.injections.StoryModule
 import dagger.Module
+import dagger.Provides
 
 @Module(
     includes = [
@@ -14,4 +15,16 @@ import dagger.Module
         StoryModule::class
     ]
 )
-class FrontpageModule
+class FrontpageModule {
+
+    @Module
+    companion object {
+
+        @JvmStatic
+        @Provides
+        @FrontpageScope
+        fun frontpageRepository(): FrontpageRepository {
+            return FrontpageRepository()
+        }
+    }
+}

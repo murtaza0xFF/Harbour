@@ -2,6 +2,7 @@ package com.murtaza0xff.harbour.firebaseapi.injections
 
 import com.murtaza0xff.harbour.firebaseapi.ListingMeta
 import com.murtaza0xff.harbour.firebaseapi.R
+import com.murtaza0xff.harbour.firebaseapi.models.AskStory
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -23,7 +24,8 @@ abstract class AskModule {
         @IntoMap
         internal fun providesAskListingMeta() = ListingMeta(
             R.string.ask_hn,
-            R.drawable.ic_question_answer
+            R.drawable.ic_question_answer,
+            AskStory()
         )
     }
 }

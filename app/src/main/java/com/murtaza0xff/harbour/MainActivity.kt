@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         inflateFrontpageView(StoryModule.STORY_KEY)
     }
 
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.stories_hn -> inflateFrontpageView(StoryModule.STORY_KEY)

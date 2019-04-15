@@ -32,7 +32,7 @@ object Versions {
 
     const val material: String = "1.1.0-alpha02" 
 
-    const val com_google_dagger: String = "2.21" 
+    const val com_google_dagger: String = "2.21" // available: "2.22.1"
 
     const val firebase_database: String = "16.1.0" 
 
@@ -42,15 +42,17 @@ object Versions {
 
     const val timber: String = "4.7.1" 
 
+    const val com_spotify_mobius: String = "1.2.1" 
+
     const val moshi_kotlin: String = "1.8.0" 
 
-    const val com_squareup_okhttp3: String = "3.14.0" 
+    const val com_squareup_okhttp3: String = "3.14.0" // available: "3.14.1"
 
     const val com_squareup_retrofit2: String = "2.5.0" 
 
     const val de_fayard_buildsrcversions_gradle_plugin: String = "0.3.2" 
 
-    const val android_junit5: String = "1.4.0.0" 
+    const val android_junit5: String = "1.4.0.0" // available: "1.4.2.0"
 
     const val mockk: String = "1.9.2" // available: "1.9.3"
 
@@ -60,11 +62,11 @@ object Versions {
 
     const val junit: String = "4.12" 
 
-    const val org_jetbrains_kotlin: String = "1.3.21" 
+    const val org_jetbrains_kotlin: String = "1.3.21" // available: "1.3.30"
 
-    const val ktlint_gradle: String = "7.2.1" 
+    const val ktlint_gradle: String = "7.2.1" // available: "7.3.0"
 
-    const val org_junit_jupiter: String = "5.4.1" 
+    const val org_junit_jupiter: String = "5.4.1" // available: "5.4.2"
 
     /**
      *
@@ -76,8 +78,8 @@ object Versions {
 
         const val currentVersion: String = "5.3.1"
 
-        const val nightlyVersion: String = "5.5-20190402000046+0000"
+        const val nightlyVersion: String = "5.5-20190414000043+0000"
 
-        const val releaseCandidate: String = ""
+        const val releaseCandidate: String = "5.4-rc-1"
     }
 }

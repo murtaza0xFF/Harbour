@@ -2,6 +2,7 @@ package com.murtaza0xff.harbour.firebaseapi.injections
 
 import com.murtaza0xff.harbour.firebaseapi.ListingMeta
 import com.murtaza0xff.harbour.firebaseapi.R
+import com.murtaza0xff.harbour.firebaseapi.models.JobStory
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -23,7 +24,8 @@ abstract class JobModule {
         @IntoMap
         internal fun providesJobListingMeta() = ListingMeta(
             R.string.job_hn,
-            R.drawable.ic_work
+            R.drawable.ic_work,
+            JobStory()
         )
     }
 }

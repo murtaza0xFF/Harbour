@@ -2,6 +2,7 @@ package com.murtaza0xff.harbour.firebaseapi.injections
 
 import com.murtaza0xff.harbour.firebaseapi.ListingMeta
 import com.murtaza0xff.harbour.firebaseapi.R
+import com.murtaza0xff.harbour.firebaseapi.models.BestStory
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -23,7 +24,8 @@ abstract class StoryModule {
         @IntoMap
         internal fun providesStoryListingMeta() = ListingMeta(
             R.string.story_hn,
-            R.drawable.ic_view_headline
+            R.drawable.ic_view_headline,
+            BestStory()
         )
     }
 }

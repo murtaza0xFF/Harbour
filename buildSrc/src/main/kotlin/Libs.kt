@@ -120,6 +120,33 @@ object Libs {
     const val timber: String = "com.jakewharton.timber:timber:" + Versions.timber
 
     /**
+     * "https://github.com/spotify/mobius/"
+     */
+    const val mobius_android: String = "com.spotify.mobius:mobius-android:" +
+            Versions.com_spotify_mobius
+
+    /**
+     * "https://github.com/spotify/mobius/"
+     */
+    const val mobius_core: String = "com.spotify.mobius:mobius-core:" + Versions.com_spotify_mobius
+
+    /**
+     * "https://github.com/spotify/mobius/"
+     */
+    const val mobius_extras: String = "com.spotify.mobius:mobius-extras:" +
+            Versions.com_spotify_mobius
+
+    /**
+     * "https://github.com/spotify/mobius/"
+     */
+    const val mobius_rx2: String = "com.spotify.mobius:mobius-rx2:" + Versions.com_spotify_mobius
+
+    /**
+     * "https://github.com/spotify/mobius/"
+     */
+    const val mobius_test: String = "com.spotify.mobius:mobius-test:" + Versions.com_spotify_mobius
+
+    /**
      * https://github.com/square/moshi
      */
     const val moshi_kotlin: String = "com.squareup.moshi:moshi-kotlin:" + Versions.moshi_kotlin

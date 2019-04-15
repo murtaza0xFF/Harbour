@@ -2,6 +2,7 @@ package com.murtaza0xff.harbour.firebaseapi.injections
 
 import com.murtaza0xff.harbour.firebaseapi.ListingMeta
 import com.murtaza0xff.harbour.firebaseapi.R
+import com.murtaza0xff.harbour.firebaseapi.models.ShowStory
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -23,7 +24,8 @@ abstract class ShowModule {
         @IntoMap
         internal fun providesShowListingMeta() = ListingMeta(
             R.string.show_hn,
-            R.drawable.ic_computer
+            R.drawable.ic_computer,
+            ShowStory()
         )
     }
 }
