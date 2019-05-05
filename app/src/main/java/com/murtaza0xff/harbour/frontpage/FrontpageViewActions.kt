@@ -1,5 +1,3 @@
 package com.murtaza0xff.harbour.frontpage
 
-interface FrontpageViewActions {
-
-}
+interface FrontpageViewActions

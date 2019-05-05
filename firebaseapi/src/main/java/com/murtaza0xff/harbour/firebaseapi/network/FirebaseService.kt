@@ -4,10 +4,7 @@ import androidx.annotation.VisibleForTesting
 import com.google.firebase.database.*
 import com.murtaza0xff.harbour.firebaseapi.models.HackerNewsItem
 import com.murtaza0xff.harbour.firebaseapi.models.SortOptions
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
-import io.reactivex.Scheduler
-import io.reactivex.Single
+import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -36,11 +33,13 @@ class FirebaseService @Inject constructor(private val firebaseDatabase: Firebase
     /**
      * From the IDs retrieved, retrieve the content of each ID.
      */
-    fun fetchHnItemFromId(id: Flowable<Long>): Flowable<HackerNewsItem> {
-        return id.concatMapEager {
-            observeHnItem(firebaseDatabase.getReference("v0/item/$it"))
+    fun fetchHnItemFromId(id: Flowable<Long>): FlowableTransformer<Long, HackerNewsItem> {
+        return FlowableTransformer {
+            id.concatMapEager {
+                observeHnItem(firebaseDatabase.getReference("v0/item/$it"))
+            }
+                .map(HackerNewsItem.Companion::create)
         }
-            .map(HackerNewsItem.Companion::create)
     }
 
     private fun getSelectedFeed(sortOptions: SortOptions): Single<DataSnapshot> =

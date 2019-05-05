@@ -7,5 +7,3 @@ data class FrontpageModel(
     val hnItems: List<HackerNewsItem>,
     val sortType: SortOptions
 )
-
-

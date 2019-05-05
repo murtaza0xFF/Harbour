@@ -72,7 +72,6 @@ dependencies {
     implementation(Libs.mobius_rx2)
     implementation(Libs.mobius_extras)
     implementation(Libs.mobius_android)
-
 }
 
 apply(plugin = "com.google.gms.google-services")
