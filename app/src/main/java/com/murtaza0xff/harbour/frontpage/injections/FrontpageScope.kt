@@ -1,4 +1,4 @@
-package com.murtaza0xff.harbour.frontpage
+package com.murtaza0xff.harbour.frontpage.injections
 
 import javax.inject.Scope
 

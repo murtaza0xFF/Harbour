@@ -24,9 +24,9 @@ class FrontpageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttrs: Int = 0
-) : FrameLayout(context, attrs, defStyleAttrs), FrontpageViewActions, Connectable<FrontpageViewData, FrontpageEvent> {
+) : FrameLayout(context, attrs, defStyleAttrs), FrontpageViewActions, Connectable<FrontpageModel, FrontpageEvent> {
 
-    private lateinit var controller: MobiusLoop.Controller<FrontpageModel, FrontpageEvent>
+    private var controller: MobiusLoop.Controller<FrontpageModel, FrontpageEvent>
     private val textView by lazy { findViewById<TextView>(R.id.textview) }
     @Inject
     lateinit var listingMetaMap: Map<String, ListingMeta>
@@ -65,7 +65,8 @@ class FrontpageView @JvmOverloads constructor(
         textView.text = context.getString(listingMeta.name)
     }
 
-    override fun connect(output: Consumer<FrontpageEvent>): Connection<FrontpageViewData> {
+    override fun connect(output: Consumer<FrontpageEvent>): Connection<FrontpageModel> {
+        output.accept(HnFrontpageItemsRequested(listingMeta.name))
     }
 
     private fun <M, E, F> updateWrapper(u: (M, E) -> Next<M, F>): Update<M, E, F> = Update { m: M, e: E -> u(m, e) }

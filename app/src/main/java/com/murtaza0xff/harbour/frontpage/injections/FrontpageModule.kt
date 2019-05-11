@@ -1,9 +1,10 @@
-package com.murtaza0xff.harbour.frontpage
+package com.murtaza0xff.harbour.frontpage.injections
 
 import com.murtaza0xff.harbour.firebaseapi.injections.AskModule
 import com.murtaza0xff.harbour.firebaseapi.injections.JobModule
 import com.murtaza0xff.harbour.firebaseapi.injections.ShowModule
 import com.murtaza0xff.harbour.firebaseapi.injections.StoryModule
+import com.murtaza0xff.harbour.frontpage.FrontpageRepository
 import dagger.Module
 import dagger.Provides
 

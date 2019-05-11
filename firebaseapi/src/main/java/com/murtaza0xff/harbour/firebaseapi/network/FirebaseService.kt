@@ -1,12 +1,16 @@
 package com.murtaza0xff.harbour.firebaseapi.network
 
 import androidx.annotation.VisibleForTesting
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.murtaza0xff.harbour.firebaseapi.models.HackerNewsItem
 import com.murtaza0xff.harbour.firebaseapi.models.SortOptions
-import io.reactivex.*
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.BackpressureStrategy
+import io.reactivex.Flowable
+import io.reactivex.Single
 import javax.inject.Inject
 
 
@@ -33,13 +37,12 @@ class FirebaseService @Inject constructor(private val firebaseDatabase: Firebase
     /**
      * From the IDs retrieved, retrieve the content of each ID.
      */
-    fun fetchHnItemFromId(id: Flowable<Long>): FlowableTransformer<Long, HackerNewsItem> {
-        return FlowableTransformer {
-            id.concatMapEager {
-                observeHnItem(firebaseDatabase.getReference("v0/item/$it"))
-            }
-                .map(HackerNewsItem.Companion::create)
+    fun fetchHnItemFromId(id: Long): Flowable<HackerNewsItem> {
+        return Flowable.just(id).concatMapEager {
+            observeHnItem(firebaseDatabase.getReference("v0/item/$it"))
         }
+            .map(HackerNewsItem.Companion::create)
+
     }
 
     private fun getSelectedFeed(sortOptions: SortOptions): Single<DataSnapshot> =

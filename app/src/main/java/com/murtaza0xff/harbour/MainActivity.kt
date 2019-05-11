@@ -4,18 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.murtaza0xff.harbour.firebaseapi.injections.AskModule
 import com.murtaza0xff.harbour.firebaseapi.injections.JobModule
 import com.murtaza0xff.harbour.firebaseapi.injections.ShowModule
 import com.murtaza0xff.harbour.firebaseapi.injections.StoryModule
-import com.murtaza0xff.harbour.firebaseapi.models.TopStory
 import com.murtaza0xff.harbour.firebaseapi.network.FirebaseService
 import com.murtaza0xff.harbour.frontpage.FrontpageView
-import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -23,6 +21,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private val bottomNavigationBar by lazy { findViewById<BottomNavigationView>(R.id.bottom_navigation_view) }
     @Inject
     lateinit var firebaseService: FirebaseService
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +30,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             .harbourComponent
             .inject(this)
 
-        bottomNavigationBar.setOnNavigationItemSelectedListener(this)
-        inflateFrontpageView(StoryModule.STORY_KEY)
+        navController = Navigation.findNavController(frontpage_container)
 
+        bottomNavigationBar.setOnNavigationItemSelectedListener(this)
+        Navigation.setViewNavController(bottom_navigation_view, navController)
+        inflateFrontpageView(StoryModule.STORY_KEY)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
