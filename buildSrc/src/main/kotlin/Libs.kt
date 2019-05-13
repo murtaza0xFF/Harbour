@@ -10,14 +10,14 @@ object Libs {
     /**
      * https://developer.android.com/topic/libraries/architecture/index.html
      */
-    const val navigation_runtime_ktx: String = "android.arch.navigation:navigation-runtime-ktx:" +
-            Versions.android_arch_navigation
+    const val navigation_runtime_ktx: String = "androidx.navigation:navigation-ui-ktx:" +
+            Versions.navigation
 
     /**
      * https://developer.android.com/topic/libraries/architecture/index.html
      */
-    const val navigation_ui_ktx: String = "android.arch.navigation:navigation-ui-ktx:" +
-            Versions.android_arch_navigation
+    const val navigation_ui_ktx: String = "androidx.navigation:navigation-fragment-ktx:" +
+            Versions.navigation
 
     /**
      * http://developer.android.com/tools/extras/support-library.html

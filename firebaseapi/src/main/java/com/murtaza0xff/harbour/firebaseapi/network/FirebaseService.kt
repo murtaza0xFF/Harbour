@@ -38,11 +38,10 @@ class FirebaseService @Inject constructor(private val firebaseDatabase: Firebase
      * From the IDs retrieved, retrieve the content of each ID.
      */
     fun fetchHnItemFromId(id: Long): Flowable<HackerNewsItem> {
-        return Flowable.just(id).concatMapEager {
-            observeHnItem(firebaseDatabase.getReference("v0/item/$it"))
-        }
+        return Flowable
+            .just(id)
+            .concatMapEager { observeHnItem(firebaseDatabase.getReference("v0/item/$it")) }
             .map(HackerNewsItem.Companion::create)
-
     }
 
     private fun getSelectedFeed(sortOptions: SortOptions): Single<DataSnapshot> =

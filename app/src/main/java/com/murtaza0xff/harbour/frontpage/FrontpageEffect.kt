@@ -1,9 +1,8 @@
 package com.murtaza0xff.harbour.frontpage
 
-import com.murtaza0xff.harbour.firebaseapi.models.HackerNewsItem
+import com.murtaza0xff.harbour.firebaseapi.ListingMeta
 
 sealed class FrontpageEffect
-object LoadItems : FrontpageEffect()
-data class ItemsLoaded(val items: List<HackerNewsItem>)
+data class LoadItems(val listingMeta: ListingMeta) : FrontpageEffect()
 data class ShowFeedback(val type: FeedbackType) : FrontpageEffect()
 data class NavigateToHnPost(val postId: Long) : FrontpageEffect()

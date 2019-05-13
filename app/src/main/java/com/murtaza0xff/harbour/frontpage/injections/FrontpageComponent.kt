@@ -1,12 +1,12 @@
 package com.murtaza0xff.harbour.frontpage.injections
 
-import com.murtaza0xff.harbour.frontpage.FrontpageView
+import com.murtaza0xff.harbour.frontpage.FrontpageFragment
 import dagger.Subcomponent
 
 @FrontpageScope
 @Subcomponent(modules = [FrontpageModule::class])
 interface FrontpageComponent {
-    fun inject(view: FrontpageView)
+    fun inject(fragment: FrontpageFragment)
 
     @Subcomponent.Builder
     interface Builder {

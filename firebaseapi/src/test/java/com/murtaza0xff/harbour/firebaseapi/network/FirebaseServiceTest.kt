@@ -5,20 +5,15 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.murtaza0xff.harbour.firebaseapi.models.HackerNewsItem
-import com.murtaza0xff.harbour.firebaseapi.models.TopStory
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
-import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
-import io.reactivex.Single
-import org.hamcrest.CoreMatchers.any
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import java.util.concurrent.TimeUnit
 
 
 @ExtendWith(MockKExtension::class)

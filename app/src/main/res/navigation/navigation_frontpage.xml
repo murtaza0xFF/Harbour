@@ -2,10 +2,55 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/frontpage">
+            android:id="@+id/frontpage"
+            app:startDestination="@id/stories_hn">
 
-    <hn_view
+    <fragment
             android:id="@+id/stories_hn"
-            app:layoutId="@layout/view_frontpage"
-            tools:layout="@layout/view_frontpage"/>
+            android:name="com.murtaza0xff.harbour.frontpage.FrontpageFragment"
+            app:layoutId="@layout/fragment_frontpage"
+            tools:layout="@layout/fragment_frontpage">
+        <argument
+                android:name="listing_type"
+                app:argType="string"
+                android:defaultValue="STORY"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/show_hn"
+            app:layoutId="@layout/fragment_frontpage"
+            android:name="com.murtaza0xff.harbour.frontpage.FrontpageFragment"
+            tools:layout="@layout/fragment_frontpage">
+
+        <argument
+                android:name="listing_type"
+                app:argType="string"
+                android:defaultValue="SHOW"/>
+    </fragment>
+
+
+    <fragment
+            android:id="@+id/ask_hn"
+            android:name="com.murtaza0xff.harbour.frontpage.FrontpageFragment"
+            app:layoutId="@layout/fragment_frontpage"
+            tools:layout="@layout/fragment_frontpage">
+
+        <argument
+                android:name="listing_type"
+                app:argType="string"
+                android:defaultValue="ASK"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/jobs_hn"
+            android:name="com.murtaza0xff.harbour.frontpage.FrontpageFragment"
+            app:layoutId="@layout/fragment_frontpage"
+            tools:layout="@layout/fragment_frontpage">
+
+        <argument
+                android:name="listing_type"
+                app:argType="string"
+                android:defaultValue="JOBS"/>
+    </fragment>
+
 </navigation>
